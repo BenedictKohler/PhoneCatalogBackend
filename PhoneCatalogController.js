@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const base64Img = require('base64-img');
 const fs = require('fs');
-const port = 8000;
+const port = process.env.PORT || 8000;
 const app = express();
 const DBConnection = require("./Config/DBContext");
 
