@@ -48,7 +48,7 @@ app.post("/phone", async (req, res) => {
         let filepath = base64Img.imgSync(image, './server/images', Date.now());
         const arr = filepath.split('\\');
 
-        req.body.imageFileName = 'http://localhost:8000/' + arr[arr.length - 1];
+        req.body.imageFileName = 'https://phone-catalog-backend.herokuapp.com/' + arr[arr.length - 1];
 
         await DBConnection.collection("Phones").doc(autoID).set(req.body);
 
@@ -149,7 +149,7 @@ app.put('/phone/:id', async (req, res) => {
             let filepath = base64Img.imgSync(image, './server/images', Date.now());
             let arr2 = filepath.split('\\');
 
-            req.body.imageFileName = 'http://localhost:8000/' + arr2[arr2.length - 1];
+            req.body.imageFileName = 'https://phone-catalog-backend.herokuapp.com/' + arr2[arr2.length - 1];
 
         }
 
