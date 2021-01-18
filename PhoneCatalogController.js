@@ -45,10 +45,10 @@ app.post("/phone", async (req, res) => {
         req.body.id = autoID;
         req.body.dateAdded = Date.now();
 
-        let filepath = base64Img.imgSync(image, './server/images', req.body.dateAdded);
+        let filepath = base64Img.imgSync(image, './server/images', Date.now());
         const arr = filepath.split('\\');
 
-        req.body.imageFileName = 'https://phone-catalog-backend.herokuapp.com/' + req.body.dateAdded;
+        req.body.imageFileName = 'https://phone-catalog-backend.herokuapp.com/' + arr[arr.length - 1];
 
         await DBConnection.collection("Phones").doc(autoID).set(req.body);
 
@@ -145,13 +145,11 @@ app.put('/phone/:id', async (req, res) => {
 
             // We now add new image to server/images
             const image = req.body.imageFileName;
-            
-            let temp = Date.now();
 
-            let filepath = base64Img.imgSync(image, './server/images', temp);
+            let filepath = base64Img.imgSync(image, './server/images', Date.now());
             let arr2 = filepath.split('\\');
 
-            req.body.imageFileName = 'https://phone-catalog-backend.herokuapp.com/' +temp;
+            req.body.imageFileName = 'https://phone-catalog-backend.herokuapp.com/' + arr2[arr2.length - 1];
 
         }
 
